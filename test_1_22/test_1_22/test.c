@@ -357,3 +357,32 @@ int count = 0;//¼ÆÊıÆ÷
 //
 //	return 0;
 //}
+
+#include<stdio.h>
+#include<stdio.h>
+int main()
+{
+
+
+	int i = 0;
+	int m = 0;
+	int j = 0;
+	int k = 0;
+	int n = 0;
+	for (i = 0; i < 100; i++)
+	{
+		m = i % 10;
+		if (m == 9)
+		{
+			j++;
+		}
+		n = i / 10;
+		n = i % 10;
+		if (n == 9)
+		{
+			j++;
+		}
+	}
+	printf("%d", j);
+	return 0;
+}
