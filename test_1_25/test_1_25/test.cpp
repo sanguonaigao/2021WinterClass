@@ -275,12 +275,29 @@
 //	return 0;
 //}
 
+//int main()
+//{
+//	short s = 3;
+//	int a = 10;
+//	printf("%d\n", sizeof(s = a + 5));
+//	printf("%d\n", s);
+//
+//	return 0;
+//}
+
+struct S
+{
+	char a;
+	char* b;
+	union {
+		char c;
+		char*d;
+		unsigned int e : 8, f : 9, g : 10;
+	};
+	struct S* ps;
+};
 int main()
 {
-	short s = 3;
-	int a = 10;
-	printf("%d\n", sizeof(s = a + 5));
-	printf("%d\n", s);
-
+	printf("%d\n", sizeof(struct S));
 	return 0;
 }
