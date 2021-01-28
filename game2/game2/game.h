@@ -6,7 +6,6 @@
 
 #define EASY_COUNT 10
 
-
 #define ROW 9
 #define COL 9
 
