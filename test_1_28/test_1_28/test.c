@@ -179,8 +179,8 @@
 //	const  int* const p = &num;
 //
 //
-//	*p = 20;
-//	p = &n;
+//	//*p = 20;
+//	//p = &n;
 //	printf("%d\n", num);
 //	//const修饰指针，放在*的右边，修饰的是指针变量本身，使得指针变量本身不能修改
 //	//但是指针指向的内容可以通过指针来改变是可以修改的
@@ -206,4 +206,11 @@
 //
 
 
+#include <string.h>
 
+int main()
+{
+	int len = _mbstrlen("abc");
+	printf("%d\n", len);
+	return 0;
+}
