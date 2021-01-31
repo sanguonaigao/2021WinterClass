@@ -433,21 +433,21 @@ size_t my_strlen(const char* str)
 //10000
 //
 
-//int main()
-//{
-//	int n = 0;
-//	scanf("%d", &n);
-//	if (n&(n - 1) == 0)
-//	{
-//		printf("Yes\n");
-//	}
-//	else
-//	{
-//		printf("No\n");
-//	}
-//	return 0;
-//}
-//
+int main()
+{
+	int n = 0;
+	scanf("%d", &n);
+	if (n&(n - 1) == 0)
+	{
+		printf("Yes\n");
+	}
+	else
+	{
+		printf("No\n");
+	}
+	return 0;
+}
+
 //
 //void print(int m)
 //{
@@ -628,19 +628,19 @@ size_t my_strlen(const char* str)
 //}
 //
 
-
-int main()
-{
-	int money = 0;
-	int total = 0;
-	scanf("%d", &money);//20
-	if (money > 0)
-		total = money * 2 - 1;
-
-	printf("total = %d\n", total);
-	return 0;
-}
-
+//
+//int main()
+//{
+//	int money = 0;
+//	int total = 0;
+//	scanf("%d", &money);//20
+//	if (money > 0)
+//		total = money * 2 - 1;
+//
+//	printf("total = %d\n", total);
+//	return 0;
+//}
+//
 
 
 
