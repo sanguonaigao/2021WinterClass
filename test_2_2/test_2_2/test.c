@@ -401,56 +401,56 @@ void print_arr(int arr[], int sz)
 //		return 0;
 //}
 #include <stdlib.h>
-
-int cmp_int(const void* e1, const void* e2)
-{
-	return (*(int*)e1 - *(int*)e2);
-}
-
-void test1()
-{
-	//qsort 排序整形数组
-	int arr[] = { 1, 5, 2, 4, 3, 9, 8, 6, 7, 0 };
-	int sz = sizeof(arr) / sizeof(arr[0]);
-	qsort(arr, sz, sizeof(arr[0]), cmp_int);
-	print_arr(arr, sz);
-}
-
-struct Stu
-{
-	char name[20];
-	int age;
-};
-
-int cmp_stu_by_age(const void* e1, const void* e2)
-{
-	return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
-}
-
-int cmp_stu_by_name(const void*e1, const void*e2)
-{
-	return strcmp( ((struct Stu*)e1)->name, ((struct Stu*)e2)->name);
-}
-
-void test2()
-{
-	//使用qsort函数排序结构体
-	struct Stu arr[] = { { "zhangsan", 20 }, { "lisi", 31 }, {"wangwu", 15} };
-	//按照名字来排序？还是按照年龄？
-	//按年龄
-	int sz = sizeof(arr) / sizeof(arr[0]);
-	//qsort(arr, sz, sizeof(arr[0]), cmp_stu_by_age);
-	//按名字排序
-	qsort(arr, sz, sizeof(arr[0]), cmp_stu_by_name);
-}
-
-
-//void qsort(void *base, - 待排序数据的起始位置
-//	      size_t num, 
-//		  size_t width, 
-//		  int(*cmp)(const void *e1, const void *e2)
-//		  );
-
+//
+//int cmp_int(const void* e1, const void* e2)
+//{
+//	return (*(int*)e1 - *(int*)e2);
+//}
+//
+//void test1()
+//{
+//	//qsort 排序整形数组
+//	int arr[] = { 1, 5, 2, 4, 3, 9, 8, 6, 7, 0 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	qsort(arr, sz, sizeof(arr[0]), cmp_int);
+//	print_arr(arr, sz);
+//}
+//
+//struct Stu
+//{
+//	char name[20];
+//	int age;
+//};
+//
+//int cmp_stu_by_age(const void* e1, const void* e2)
+//{
+//	return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
+//}
+//
+//int cmp_stu_by_name(const void*e1, const void*e2)
+//{
+//	return strcmp( ((struct Stu*)e1)->name, ((struct Stu*)e2)->name);
+//}
+//
+//void test2()
+//{
+//	//使用qsort函数排序结构体
+//	struct Stu arr[] = { { "zhangsan", 20 }, { "lisi", 31 }, {"wangwu", 15} };
+//	//按照名字来排序？还是按照年龄？
+//	//按年龄
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	//qsort(arr, sz, sizeof(arr[0]), cmp_stu_by_age);
+//	//按名字排序
+//	qsort(arr, sz, sizeof(arr[0]), cmp_stu_by_name);
+//}
+//
+//
+////void qsort(void *base, - 待排序数据的起始位置
+////	      size_t num, 
+////		  size_t width, 
+////		  int(*cmp)(const void *e1, const void *e2)
+////		  );
+//
 void _swap(char* buf1, char* buf2, int width)
 {
 	int i = 0;
@@ -463,7 +463,7 @@ void _swap(char* buf1, char* buf2, int width)
 		buf2++;
 	}
 }
-
+//
 void bubble_sort(void* base, size_t sz, size_t width, int(*cmp)(const void*e1,const void*e2))
 {
 	size_t i = 0;
@@ -483,35 +483,35 @@ void bubble_sort(void* base, size_t sz, size_t width, int(*cmp)(const void*e1,co
 		}
 	}
 }
+//
+//void test3()
+//{
+//	//qsort 排序整形数组
+//	int arr[] = { 1, 5, 2, 4, 3, 9, 8, 6, 7, 0 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	bubble_sort(arr, sz, sizeof(arr[0]), cmp_int);
+//	print_arr(arr, sz);
+//}
+//
+//void test4()
+//{
+//	//使用qsort函数排序结构体
+//	struct Stu arr[] = { { "zhangsan", 20 }, { "lisi", 31 }, { "wangwu", 15 } };
+//	//按照名字来排序？还是按照年龄？
+//	//按年龄
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	bubble_sort(arr, sz, sizeof(arr[0]), cmp_stu_by_age);
+//	//按名字排序
+//	//bubble_sort(arr, sz, sizeof(arr[0]), cmp_stu_by_name);
+//}
 
-void test3()
-{
-	//qsort 排序整形数组
-	int arr[] = { 1, 5, 2, 4, 3, 9, 8, 6, 7, 0 };
-	int sz = sizeof(arr) / sizeof(arr[0]);
-	bubble_sort(arr, sz, sizeof(arr[0]), cmp_int);
-	print_arr(arr, sz);
-}
-
-void test4()
-{
-	//使用qsort函数排序结构体
-	struct Stu arr[] = { { "zhangsan", 20 }, { "lisi", 31 }, { "wangwu", 15 } };
-	//按照名字来排序？还是按照年龄？
-	//按年龄
-	int sz = sizeof(arr) / sizeof(arr[0]);
-	bubble_sort(arr, sz, sizeof(arr[0]), cmp_stu_by_age);
-	//按名字排序
-	//bubble_sort(arr, sz, sizeof(arr[0]), cmp_stu_by_name);
-}
-
-int main()
-{
-	//test1();
-	//test2();
-	test4();
-	return 0;
-}
+//int main()
+//{
+//	//test1();
+//	//test2();
+//	test4();
+//	return 0;
+//}
 
 //int main()
 //{
@@ -531,3 +531,4 @@ int main()
 //
 //	return 0;
 //}
+
