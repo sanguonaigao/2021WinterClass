@@ -395,35 +395,69 @@ char* left_move(char* str, int k)
 //2 3 4
 //3 4 5
 //
+//
+//int find(int arr[3][3], int k, int r, int c)
+//{
+//	int x = 0;
+//	int y = c - 1;
+//
+//	while (x<r && y>=0)
+//	{
+//		if (arr[x][y] < k)
+//			x++;
+//		else if (arr[x][y] > k)
+//			y--;
+//		else
+//			return 1;
+//	}
+//
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[3][3] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+//	int k = 17;
+//	int ret = find(arr, k, 3, 3);
+//	if (ret == 1)
+//		printf("Yes\n");
+//	else
+//		printf("No\n");
+//
+//	return 0;
+//}
+//
+//
 
-int find(int arr[3][3], int k, int r, int c)
+
+//int main()
+//{
+//	printf("%d\n", -8 << 1);
+//
+//	return 0;
+//}
+//
+
+typedef struct{
+	const char*description; 
+	float value;
+}swag;
+
+typedef struct{
+	swag* swag;
+	const char*sequence;
+}combination;
+
+typedef struct{
+	combination numbers;
+	const char*make;
+}safe;
+
+int main(int argc, char* argv[])
 {
-	int x = 0;
-	int y = c - 1;
-
-	while (x<r && y>=0)
-	{
-		if (arr[x][y] < k)
-			x++;
-		else if (arr[x][y] > k)
-			y--;
-		else
-			return 1;
-	}
-
+	swag gold = { "GOLD!", 1000000.0  };
+	combination number = { &gold, "6502" };
+	safe s = { number, "RAMACON250" };
+	printf("Contents = %s\n", (s.numbers.swag)->description);
 	return 0;
 }
-int main()
-{
-	int arr[3][3] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	int k = 17;
-	int ret = find(arr, k, 3, 3);
-	if (ret == 1)
-		printf("Yes\n");
-	else
-		printf("No\n");
-
-	return 0;
-}
-
 
