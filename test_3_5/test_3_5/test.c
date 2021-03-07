@@ -95,3 +95,27 @@
 //
 //	return 0;
 //}
+
+#include <stdio.h>
+
+
+int main() {
+	char arr[100][100];
+
+	int i = 0;
+
+	while (scanf("%s", &arr[i][100]) != EOF){
+		i++;
+	}
+	while (i >= 0) {
+		if (i == 1) {
+			printf("%s\n", arr[i]);
+		}
+		else {
+			printf("%s ", arr[i]);
+		}
+		i--;
+	}
+
+	return 0;
+}
