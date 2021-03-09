@@ -346,16 +346,39 @@
 
 
 
-union U
-{
-	short arr[7];//14
-	int i;//4
-};
+//union U
+//{
+//	short arr[7];//14
+//	int i;//4
+//};
+//
+//int main()
+//{
+//	union U u;
+//	printf("%d\n", sizeof(u));//16
+//
+//	return 0;
+//}
 
+
+//int main()
+//{
+//	fopen("test.txt", "a+");
+//	return 0;
+//}
+
+int Add(int x, int y)
+{
+	return x + y;
+}
+//指针变量中存放的是其实是函数第一行代码的地方
+//&Add取出的是
 int main()
 {
-	union U u;
-	printf("%d\n", sizeof(u));//16
+	int (*pf)(int, int) = Add;
+	//Add(2, 3);
+	printf("%p\n", pf);
+	printf("%p\n", Add);
 
 	return 0;
 }
