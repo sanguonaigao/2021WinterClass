@@ -47,6 +47,7 @@ void test()
 {
 	int input = 0;
 	struct Contact con;//创建了一个通讯录
+
 	//初始化通讯录
 	InitContact(&con);
 
@@ -73,6 +74,7 @@ void test()
 			ShowContact(&con);
 			break;
 		case EXIT:
+			DestroyContact(&con);
 			printf("退出通讯录\n");
 			break;
 		case SORT:

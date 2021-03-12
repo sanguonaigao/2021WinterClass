@@ -1,11 +1,16 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
 
 #define NAME_MAX 20
 #define SEX_MAX 5
 #define TELE_MAX 12
 #define ADDR_MAX 30
+
+#define DEFAULT_SZ 3
+
 
 #define MAX 1000
 
@@ -19,12 +24,22 @@ struct PeoInfo
 	char addr[ADDR_MAX];
 };
 
-//通讯录的结构体
+//静态的通讯录的结构体
+//struct Contact
+//{
+//	struct PeoInfo data[MAX];//存放1000人的信息的空间
+//	int sz;//表示通讯录中当前存放的人的信息个数
+//};
+
+
+//动态的版本
 struct Contact
 {
-	struct PeoInfo data[MAX];//存放1000人的信息的空间
+	struct PeoInfo *data;
 	int sz;//表示通讯录中当前存放的人的信息个数
+	int capacity;//表示通讯录当前的最大容量
 };
+	
 
 //函数的声明
 
@@ -47,4 +62,5 @@ void SearchContact(const struct Contact* pc);
 void ModifyContact(struct Contact* pc);
 
 
-
+//销毁通讯录
+void DestroyContact(struct Contact* pc);

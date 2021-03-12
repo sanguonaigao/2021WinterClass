@@ -2,35 +2,85 @@
 
 #include "contact.h"
 
+//静态版本
+//void InitContact(struct Contact* pc)
+//{
+//	pc->sz = 0;
+//	//memset - 设置内存的
+//	memset(pc->data, 0, sizeof(pc->data));
+//}
+
+//动态版本-初始化通讯录
 void InitContact(struct Contact* pc)
 {
-	pc->sz = 0;
-	//memset - 设置内存的
-	memset(pc->data, 0, sizeof(pc->data));
+	pc->sz = 0;//通讯录创建好的时候，没有有效信息
+	pc->capacity = DEFAULT_SZ;//通讯录创建好的时候，默认能放DEFAULT_SZ个人的信息
+	pc->data = (struct PeoInfo*)malloc(DEFAULT_SZ*sizeof(struct PeoInfo));
+	if (pc->data == NULL)
+	{
+		printf("初始化通讯录失败\n");
+		exit(1);
+	}
 }
 
+//静态的版本
+//void AddContact(struct Contact* pc)
+//{
+//	if (pc->sz == MAX)
+//	{
+//		printf("通讯录已满，无法添加\n");
+//	}
+//	else
+//	{
+//		printf("请输入名字:>");
+//		scanf("%s", pc->data[pc->sz].name);
+//		printf("请输入年龄:>");
+//		scanf("%d", &(pc->data[pc->sz].age));
+//		printf("请输入性别:>");
+//		scanf("%s", pc->data[pc->sz].sex);
+//		printf("请输入电话:>");
+//		scanf("%s", pc->data[pc->sz].tele);
+//		printf("请输入地址:>");
+//		scanf("%s", pc->data[pc->sz].addr);
+//
+//		pc->sz++;
+//		printf("添加成功\n");
+//	}
+//}
+
+
+//动态增长的版本
 void AddContact(struct Contact* pc)
 {
-	if (pc->sz == MAX)
+	if (pc->sz == pc->capacity)
 	{
-		printf("通讯录已满，无法添加\n");
+		//增容
+		struct PeoInfo* ptr = (struct PeoInfo*)realloc(pc->data, (pc->capacity + 2)*sizeof(struct PeoInfo));
+		if (ptr == NULL)
+		{
+			printf("扩容失败\n");
+			return;
+		}
+		else
+		{
+			printf("增容成功\n");
+			pc->capacity += 2;
+		}
 	}
-	else
-	{
-		printf("请输入名字:>");
-		scanf("%s", pc->data[pc->sz].name);
-		printf("请输入年龄:>");
-		scanf("%d", &(pc->data[pc->sz].age));
-		printf("请输入性别:>");
-		scanf("%s", pc->data[pc->sz].sex);
-		printf("请输入电话:>");
-		scanf("%s", pc->data[pc->sz].tele);
-		printf("请输入地址:>");
-		scanf("%s", pc->data[pc->sz].addr);
 
-		pc->sz++;
-		printf("添加成功\n");
-	}
+	printf("请输入名字:>");
+	scanf("%s", pc->data[pc->sz].name);
+	printf("请输入年龄:>");
+	scanf("%d", &(pc->data[pc->sz].age));
+	printf("请输入性别:>");
+	scanf("%s", pc->data[pc->sz].sex);
+	printf("请输入电话:>");
+	scanf("%s", pc->data[pc->sz].tele);
+	printf("请输入地址:>");
+	scanf("%s", pc->data[pc->sz].addr);
+
+	pc->sz++;
+	printf("添加成功\n");
 }
 
 void ShowContact(const struct Contact* pc)
@@ -153,5 +203,14 @@ void ModifyContact(struct Contact* pc)
 
 		printf("修改成功\n");
 	}
+}
+
+
+void DestroyContact(struct Contact* pc)
+{
+	free(pc->data);
+	pc->data = NULL;
+	pc->capacity = 0;
+	pc->sz = 0;
 }
 
