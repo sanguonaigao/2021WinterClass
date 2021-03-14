@@ -162,33 +162,47 @@
 //	return 0;
 //}
 
-#include<string.h>
-#include <errno.h>
-
+//#include<string.h>
+//#include <errno.h>
+//
+//int main()
+//{
+//	//相对路径
+//	//.. 表示上一级目录
+//	//. 当前目录
+//	//FILE* pf = fopen("../data.txt", "r");
+//	//绝对路径
+//	//./hehe/test.txt
+//	//../../
+//	FILE* pf = fopen("../../data.txt", "r");
+//	if (pf == NULL)
+//	{
+//		printf("打开文件失败\n");
+//		printf("%s\n", strerror(errno));
+//		return 1;//失败返回
+//	}
+//	//打开文件成功
+//	printf("打开文件成功\n");
+//	//读写文件
+//	//...
+//
+//	//关闭文件
+//	fclose(pf);
+//	pf = NULL;
+//
+//	return 0;
+//}
+int st(char* str)
+{
+	if (*str != '\n')
+		return 1 + st(str + 1);
+	else
+		return 0;
+}
 int main()
 {
-	//相对路径
-	//.. 表示上一级目录
-	//. 当前目录
-	//FILE* pf = fopen("../data.txt", "r");
-	//绝对路径
-	//./hehe/test.txt
-	//../../
-	FILE* pf = fopen("../../data.txt", "r");
-	if (pf == NULL)
-	{
-		printf("打开文件失败\n");
-		printf("%s\n", strerror(errno));
-		return 1;//失败返回
-	}
-	//打开文件成功
-	printf("打开文件成功\n");
-	//读写文件
-	//...
-
-	//关闭文件
-	fclose(pf);
-	pf = NULL;
-
+	char arr[] = "str";
+	int len = st(arr);
+	printf("%d", len);
 	return 0;
 }

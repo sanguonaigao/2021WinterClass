@@ -10,6 +10,58 @@
 //	memset(pc->data, 0, sizeof(pc->data));
 //}
 
+int CheckCapacity(Contact* pc)
+{
+	if (pc->sz == pc->capacity)
+	{
+		//增容
+		struct PeoInfo* ptr = (struct PeoInfo*)realloc(pc->data, (pc->capacity + 2)*sizeof(struct PeoInfo));
+		if (ptr == NULL)
+		{
+			printf("扩容失败\n");
+			return 0;
+		}
+		else
+		{
+			//如果增容成功要把ptr赋值给pc->data
+			pc->data = ptr;
+			pc->capacity += 2;
+			printf("增容成功\n");
+			return 1;
+		}
+	}
+	return 1;
+}
+
+void LoadContact(Contact* pc)
+{
+	//打开文件
+	FILE* pfIn = fopen("contact.dat", "rb");
+	if (pfIn == NULL)
+	{
+		printf("LoadContact::%s\n", strerror(errno));
+		return;
+	}
+	//读文件内容，放进通讯录
+	PeoInfo tmp = { 0 };
+	while (fread(&tmp, sizeof(PeoInfo), 1, pfIn))
+	{
+		//检测是否要增容
+		if (CheckCapacity(pc) == 0)
+		{
+			printf("通讯录初始化失败\n");
+			return;
+		}
+		//存储元素
+		pc->data[pc->sz] = tmp;
+		pc->sz++;
+	}
+
+	//关闭文件
+	fclose(pfIn);
+	pfIn = NULL;
+}
+
 //动态版本-初始化通讯录
 void InitContact(struct Contact* pc)
 {
@@ -21,7 +73,10 @@ void InitContact(struct Contact* pc)
 		printf("初始化通讯录失败\n");
 		exit(1);
 	}
+	//加载文件
+	LoadContact(pc);
 }
+
 
 //静态的版本
 //void AddContact(struct Contact* pc)
@@ -52,20 +107,10 @@ void InitContact(struct Contact* pc)
 //动态增长的版本
 void AddContact(struct Contact* pc)
 {
-	if (pc->sz == pc->capacity)
+	if (CheckCapacity(pc) == 0)
 	{
-		//增容
-		struct PeoInfo* ptr = (struct PeoInfo*)realloc(pc->data, (pc->capacity + 2)*sizeof(struct PeoInfo));
-		if (ptr == NULL)
-		{
-			printf("扩容失败\n");
-			return;
-		}
-		else
-		{
-			printf("增容成功\n");
-			pc->capacity += 2;
-		}
+		printf("空间不够使用，增加容量时失败\n");
+		return;
 	}
 
 	printf("请输入名字:>");
@@ -214,3 +259,23 @@ void DestroyContact(struct Contact* pc)
 	pc->sz = 0;
 }
 
+void SaveContact(Contact* pc)
+{
+	//打开文件
+	FILE* pfOut = fopen("contact.dat", "wb");
+	if (pfOut == NULL)
+	{
+		printf("SaveContact::%s\n", strerror(errno));
+		return;
+	}
+	//写数据
+	int i = 0;
+	for (i = 0; i < pc->sz; i++)
+	{
+		fwrite(pc->data + i, sizeof(PeoInfo), 1, pfOut);
+	}
+
+	//关闭文件
+	fclose(pfOut);
+	pfOut = NULL;
+}

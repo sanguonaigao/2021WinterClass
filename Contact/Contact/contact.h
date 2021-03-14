@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <errno.h>
 
 
 #define NAME_MAX 20
@@ -15,14 +16,14 @@
 #define MAX 1000
 
 //描述一个人信息的结构体
-struct PeoInfo
+typedef struct PeoInfo
 {
 	char name[NAME_MAX];
 	int age;
 	char sex[SEX_MAX];
 	char tele[TELE_MAX];
 	char addr[ADDR_MAX];
-};
+}PeoInfo;
 
 //静态的通讯录的结构体
 //struct Contact
@@ -33,12 +34,12 @@ struct PeoInfo
 
 
 //动态的版本
-struct Contact
+typedef struct Contact
 {
 	struct PeoInfo *data;
 	int sz;//表示通讯录中当前存放的人的信息个数
 	int capacity;//表示通讯录当前的最大容量
-};
+}Contact;
 	
 
 //函数的声明
@@ -64,3 +65,6 @@ void ModifyContact(struct Contact* pc);
 
 //销毁通讯录
 void DestroyContact(struct Contact* pc);
+
+//保存数据到文件
+void SaveContact(Contact* pc);

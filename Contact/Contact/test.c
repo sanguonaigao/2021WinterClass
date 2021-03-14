@@ -19,6 +19,9 @@
 //6. 排序
 //0. 退出
 //
+//静态版本 - 一次开辟1000个元素的连续空间
+//动态增长的版本 - 按需开辟
+//文件的版本 - 数据可以存储到文件中，不至于丢失
 
 #include "contact.h"
 
@@ -28,7 +31,7 @@ void menu()
 	printf("*****   1. add         2. del   *****\n");
 	printf("*****   3. search      4. modify*****\n");
 	printf("*****   5. show        6. sort  *****\n");
-	printf("*****   0. exit                 *****\n");
+	printf("*****   0. exit        7. save  *****\n");
 	printf("*************************************\n");
 }
 
@@ -40,7 +43,8 @@ enum Option
 	SEARCH,
 	MODIFY,
 	SHOW,
-	SORT
+	SORT,
+	SAVE
 };
 
 void test()
@@ -78,6 +82,9 @@ void test()
 			printf("退出通讯录\n");
 			break;
 		case SORT:
+			break;
+		case SAVE:
+			SaveContact(&con);
 			break;
 		}
 	} while (input);
